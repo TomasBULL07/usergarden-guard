@@ -7,13 +7,28 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./components/LoginPage";
 import AdminConsole from "./components/AdminConsole";
+
 const queryClient = new QueryClient();
 const App = () => (<QueryClientProvider client={queryClient}>
+
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
         <Routes>
+
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/dashboard" element={<Index />} />
+          <Route path="/admin" element={<AdminConsole />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+
           <Route path="/" element={<LoginPage />}/>
           <Route path="/dashboard" element={<Index />}/>
           <Route path="/admin" element={<AdminConsole />}/>
@@ -23,4 +38,5 @@ const App = () => (<QueryClientProvider client={queryClient}>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>);
+
 export default App;
